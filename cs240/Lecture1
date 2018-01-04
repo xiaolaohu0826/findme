@@ -1,0 +1,89 @@
+Mergesort is a recursive algorithm that solves the sorting problem in O(login) worst-case time.
+
+Problem: description of input and desired output.
+    Sorting: given numbers, put them in increasing order.
+    Structured searching: given data with keys search by that key.
+    Unstructured searching: given text search for a string.
+
+Algorithm: step-by-are process to modify input
+Program: specific implementation
+
+Recursive: algorithm uses itself(->later)
+Solving: algorithm finishes in finite time 
+Run-time: #computing steps (->later)
+Worst-case: ->later
+
+n: size of input, size(A) or | A | 
+for instance(our specific input) A
+
+O: ->later
+
+Algorithm design:
+Given problem, design an algorithm for it.
+
+Step1: describe algorithm idea(in English)
+E.g. loser toon into sorted array 
+    Idea: swift all items over that are bigger than inserted object.
+Step2: give detailed description usually pseudocode 
+
+Insert into sorted array: (A [0, ... , n-1], x)
+// A: array of size n, sorted
+// x: item to be inserted
+j = n-1
+While (j <=0 && A[j] >x) 
+           Move A[j] to position j+1
+           j- -
+Insert x at position j+1
+
+Can be sloppy: 
+1. syntax
+2. Parenthesis
+
+Be fairly precise about math formulas
+
+Step3: argue correctness
+Give enough details that someone could do a CS245-like proof. Loop invariant?
+
+Step4: analyze efficiency
+- mostly care about run-time
+- Sometimes care about space
+- Need asymptotic notation (五个效率符号)
+
+(Step5: implement)
+
+Why not use experiments to determine efficiency?
+- on what input to test?
+- Differences in program quality, hardware & software?
+- $$$
+
+CS240 goal: evaluate without implementing
+
+Run-time analysis:
+Want a guess on the run-time, given pseudocode
+Computer model: Random Access Machine(RAM)
+* computer has a set of memory cells, each cell stores one word.
+* Every primitive operation (basic arithmetic: add, subtract, multiply, divide, comparing two values, handing control to a subroutine) takes one unit of time
+Not primitive: sqrt, sin, cos, any complicated subroutine.
+* accessing a memory cell (if we now it’s address) takes one unit of time (A[i])
+
+
+How to analyze pseudocode?                                              i
+For i = 1 to n                                                          ∑ 2  =  2i
+      For j = 1 to i                                                   j=1
+            Print “hello” <- limit
+* counting (usually) 1 unit per time.
+* Loop: count steps in each iteration and sum up
+
+* nested loops: nested summations:
+n
+∑
+
+
+
+
+
+
+
+
+
+
