@@ -81,3 +81,4 @@ First bit is "sign bit"
 1. Write absolute value as unsigned
 2. If positive, we're done
 3. Invert everybit.
+4. Add 1
