@@ -1,3 +1,83 @@
 2018-01-04
+Prof: Gregor Richards
+Lec1           
 
 
+CPU controls, manipulates, transforms data.
+RAM(Randin-Access Memory) stores data
+
+"Bits" each store information
+In circuitry, 1 often means "live wire". Meaning to us is contextual
+
+
+Machine langauge:
+· All computer is stored as bits
+· Computer code is data
+· CPU understands particular bits as instructions
+· Tied to CPU architecture
+· Fix format great for machines
+· Painful for humans(A1)
+
+
+Assembly language:
+· Simple, text-based representation of machine code
+· More suitable for humans(A2)
+· Relatively easy to translate
+  machine language  <->  Assembly language
+  
+  
+Assembler:
+· Abstraction: Machine can't directly handle assembly language, human should not have to handle machinelanguage
+· Translate assembly language to machine language
+· How? Write a program!(A3+A4)
+
+
+Sequence of bits:
+· More bits = more infomation
+· 1 bit: 0,1 ==> 2 sequences
+· 2 bits: 00, 01, 10, 11 ==> 4 sequences
+· 3 bits: 000, 001, 010, 011 ... 8 sequences
+
+· Number of bits to store data often fixed! (It's part of the context)
+· Therefore: Amount of information fixed
+· 3 bits: 8 individual values
+
+
+Integers:
+· Obvious interpretation of bits: Numbers
+· 3-bit unsigned integers:
+   000 = 0
+   001 = 1
+   010 = 2
+   011 = 3
+   100 = 4
+   101 = 5
+   110 = 6
+   111 = 7
+
+Overflow:
+· Fixed number of bits
+· Some operations need more, so where does the overflow go?
+· Usually: Go nowhere
+E.g. 110 + 1 = 111
+     111 + 1 = ...1000 = 000
+     001 - 1 = 000
+     000 - 1 = ...111 = 111
+     · Assume its circular   000 -> 001 -> 010 -> 011 -> 100 -> 101 -> 110 -> 111 (-> 000)
+                             0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 (-> 0)
+
+2s complement:
+000 = 0
+001 = 1
+010 = 2
+011 = 3
+100 = -4
+101 = -3
+110 = -2
+111 = -1
+First bit is "sign bit"
+
+2s complement algorithm:
+1. Write absolute value as unsigned
+2. If positive, we're done
+3. Invert everybit.
