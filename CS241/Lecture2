@@ -1,1 +1,77 @@
+Lecture2      Jan 9th
+Machine Language
+
+Use the same strategy to get positive number from a negative number represented by 2s complement
+1. flip digits
+2. plus 1
+
+
+Hexadecimal:
+· Binary is great, but verbose
+· Binary does not convert easily to decimal: No number of bits exactly equals a number of decimal digits
+· Hexadecimal: Base 16: 0 1 2 3 4 5 6 7 8 9 A B C D E F
+· Each hex digit = exactly four bits
+
+Making context clear:
+
+0010 0100 0000 0100 = 0b 0010 0100 0000 0100 = (0010 0100 0000 0100)base:2
+= 2404 = 0x2404 = (2404)base:16
+= 9220 = 9,220 = (9220)base:10
+
+In Linux:
+Bit sequences matter!
+Lots of ways of Linux-ifing your Windows machine:
+· cygwin(and use ssh -Y yourname@linux.student.cs.uwaterloo.ca)
+· Linux live CD
+· einstall your own linux (Ubuntu is well supported and easy to use)
+· putty
+
+
+Grouping of Bits:
+· Most common grouping is a byte: 8 bits
+· Integers: 2^8 = 256 different values
+  · Unsigned: 0~255
+  · Signed: -128~127
+
+· Characters:
+  · Enough for 256 distinct characters, however:
+    · Some codes are special, e.g. 0
+    · 256 is not enough for 中文
+    · Exactly which character set you are using is determined by context (but is almost always compatible with ASCII)
+    
+Larger Grouping of bits:
+· "standard" ASCII: 0-127
+· "extended" ASCII: 128-255
+  · Many different standards, but ISO 8859-1(latin1) is common
+  · Suficient for Francais, Espanol, even Zhongwen, but not 中文
+  · Need a different alphabet? Need a different character set! Cyrillic or extended Latin, not both!
+  · Which are you using? Need context!
+
+· Unicode (e.g., UTF-8)
+  · Unicode is a huge character set
+  · Can encode it directly with UCS-4: 4 bytes(32 bits) per character!
+  · UTF-8 is more common:
+    · First bit 0: ASCII(backwards compatible!)
+    · First bit 1: Extended character, takes more than one byte
+    · Size isn't fixed!
+    
+A word about words:
+· Every machine has a "word size"
+· Number of bits the machine is "comfortable with"
+  · (often) size of an instruction
+  · (often) size of one "unit" of memory
+  · Size of a pointer/maximum address in memory
+  · Size that integer instructions expect
+
+Files:
+· a sequence of bytes
+· the interpretation is in the eye of the beholder
+  · cat interprets the file as a sequence of characters in whatever character set your shell is using
+  · eog interprets the file as a description of an image
+  · xxd interprets the file as a sequences of integers and displays them  in hexadecimal
+    · (This is the best way to learn exactly what the bits are)
+
+
+
+
 
