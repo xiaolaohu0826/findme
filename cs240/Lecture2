@@ -1,0 +1,96 @@
+Office hours: Tuesdays after class
+
+
+Big - O
+
+Let f(n), g(n) be two functions
+f(n)∈O(g(n))   [asymptotic upper bound]
+if there exists c > 0,
+such that |f(n)| <= c* |g(n)| for all n >= n0
+
+Example: f(n) = 2n^2 + 3n + 11
+         g(n) = n^2
+         
+  Claim: f(n) ∈ O(g(n))
+  c = 16:  f(n) = 2n^2 + 3n + 11 <= 2n^2 + 3n^2 + 11n^2 = 16n^2   as long as n>=1
+
+Can show: If f(n), g(n) > 0 and only defined for integer n >= 1
+then f(n) ∈ O(g(n))
+
+<==> there exists a constant c > 0 such that f(n) <= c* g(n)
+
+
+Let f(n), g(n) be two functions.
+We say that f(n) ∈ Ω(g(n))                                                                                        [big-Omega]
+if there exist c > 0 and n0 >= 0 such that |f(n)| >= c*|g(n)| for n >= n0
+
+Example: f(n) = 1/2n^2 - 5n = 1/4n^2 + [1/4n^2 - 5n](>= 0 for n >= 20)                          c = 1/4, n0 = 20
+         g(n) = n^2
+         for all n >= n0 = 20
+
+
+Asymptotically tight bound:
+  Let f(n), g(n) be two functions.
+  We say that f(n) ∈ θ(g(n))                                                                                      [Theta]
+    if f(n)∈O(g(n)) and f(n)∈Ω(g(n))
+  
+  Equivalent: there exist c1, c2, n0 s.t. c1*|f(n)| <= c2*|g(n)| for all n >= n0
+
+
+Recall:  2n^2 ∈O(n^100)
+Let f(n), g(n) be two functions.
+We say that f(n) ∈ o(g(n))                                                                                        [little-o, 
+                                                                                                       asymptotically smaller]
+if for any c > 0 there exists n0 >= 0 s.t. |f(n)| <= c*|g(n)| for all n >= n0           (c smaller, n0 bigger)
+
+Example: f(n) = n, g(n) = n^2
+For any c > 0, we have  f(n) = n = c*1/c*n <= c*n^2, as long as n >= 1/c = n0
+
+
+Let f(n), g(n) be two functions。
+We say that f(n)∈ω(g(n))                                                                                          [little omega,
+                                                                                                   asymptotically strictly bigger]
+  if for any c > 0 there exists an n0 >= 0 s.t. |f(n)| >= c*|g(n)| for all n >= n0
+   
+Limit rule: Let f(n), g(n) be two positive function.
+  Assume that   lim f(n)/g(n)          exists (call it L)
+               x->∞
+             { o(g(n)) if L = 0
+  Then f(n)∈{ θ(g(n)) if 0 < L < ∞
+             { ω(g(n)) if L = ∞
+             
+  Example: f(n) = 2n^2 + 5n,   g(n) = n^2
+  We have f(n)∈θ(g(n)), because  lim (2n^2 + 5n)/n^2 = lim 2n^2/n^2 + lim 5n/n^2 = lim 2 + lim 5/n = 2
+                                 n->∞                  n->∞           n->∞         n->∞    n->∞
+  Polynomial rule: If f(n) is polynomial of degree d(i.e f(n) = Cd*n^d + Cd-1*n^d-1 "+ ... + c1n + c0 (Cd > 0))
+                   then f(n) ∈ θ(n^d)
+                   
+                   Proof: lim (Cd*n^d + ... + c1n + c0)/n^d = lim cdn^d/n^d + lim cd-1*n^d-1/n^d + 0 + 0 ... = Cd
+                         n->∞                                n->∞            n->∞
+  
+  Example: f(n) = logn, g(n) = n
+    Claim: f(n) ∈ o(g(n))                                                                                         [logn ∈ o(n)]
+    
+    Limit rule: lim logn/n = lim (lnn/ln2)/n = lim (1/ln2*1/n)/1 = lim 1/ln2 * 1/n = 0
+               n->∞         n->∞              n->∞                n->∞
+    Toro stronger versions:  logn  ∈ o(n^i) for arbitrarily small i > 0
+                             log^k n(logn)^k ∈o(n) for arbitrarily big k > 0
+                             
+    Warning: If the limit does not exist, then7 we know nothing.
+             f(n) = (2 + sin(n*π/2))*n <= 3n             g(n) = n
+                         [-1 ~ 1 ]
+    
+A nice Exam question:
+  fill in this table with TRUE and FALSE
+  f(n)  | g(n) |  o  |  Ω  |  ω  |
+  --------------------------------------------------
+  logn  |  n   | TRUE|FALSE|     |
+  n^4   | 10n^4| TRUE|TRUE |     |
+  
+  If f(n)∈o(g(n)), then f(n) ∈ O(g(n))
+  If f(n)∈o(g(n)), then f(n) ∉  Ω(g(n))
+  If f(n)∈ω(g(n)), then f(n) ∈ Ω(g(n))      
+  
+  Contrapositive: If f(n) ∉ Ω(g(n)), then f(n) ∉ ω(g(n))
+                  If f(n) ∈ω(g(n)), then f(n) ∉ O(g(n))
+        
