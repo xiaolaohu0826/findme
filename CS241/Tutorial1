@@ -1,0 +1,92 @@
+Jan 10th
+
+Sean Harrap            sharrap@uwaterloo.ca
+
+tutorials: 9:30-10:20 / 11:30-12:20   MC4041
+
+Binary - # writing system with two values for each digit
+
+Bit - 0 or 1(binary digit)
+byte - 8 bits
+word - the amount of bits your CPU likes to work with (32 in this course)
+
+
+what does 00101101 represent?
+- Unsigned/signed number (45?)
+- ASCII character ('5'?)
+- compressed data(zip fik)
+- music data
+
+1011(base 2) = 1*2^3 + 0*2^2 + 1*2^1 + 1*2^0 = 8 + 0 + 2 + 1 = 11
+23(base 10)
+
+23/2 = 11 rem 1
+11/2 = 5  rem 1
+5/2  = 2  rem 1
+2/2  = 1  rem 0
+1/2  = 0  rem 1
+
+digit :    4 3 2 1 0
+           1 0 1 1 1 (base 2) = 23(base 10)
+           2^4 + 2^2 + 2^1 + 2^0 = 16 + 4 + 2 + 1 = 23
+           
+Exercise:
+  rewrite 35(base 10) in binary
+  2^5 + 2^1 + 2^0 = 32 + 2 + 1 = 35
+  35(base 10) = 100011(base 2)
+  
+Two's complement
+what is -12 in 8-bit binary?
+Need: Agree on how many bits we are using.
+Idea: -x is the number such that (-x) + x = 0
+
+One strategy:
+1. write 12 (unsigned #) in 8-bit binary
+   12(base 10) = 00001100(base 2)
+2. flip every bit
+   11110011
+3. +1
+   11110100 = -12
+
+Range: (-2^b-1) ... (2^b-1 - 1)
+
+  -128 = 10000000 ...      127 = 01111111
+  ---------------------------------------
+  1111 1111 + x = 1000 0000 0(curtail the last digit)
+              1
+
+Assembly:
+  CPU-specific low-level programming language
+  we are using a modified MIPS r3000 
+
+  add $3, $1, $2
+  "add register 1, reg 2, and put the answer in $3"
+  Register:
+    · 32-bit varaible 
+    · 0...31, some special regs
+    · $0 = 0
+    · $31 is special
+    · $1, $2, $3, $29, $30 will be special by convention  later
+  
+  Immediate:
+  If you want to use constants for most purposes, must us LIS
+  
+  lis $7   }  put 13 into $7
+  .word 13 }
+  
+  mult $5, $4   - register formal encoding
+  0000 00ss ssst tttt 0000 0000 0001 1000
+         [..........] mult $5, $4(mult $s, $t) 5 digit for $s and 5 digit for $t.
+  0000 0000 1010 0100 0000 0000 0001 1000
+         sssss  ttttt
+         [$5]   [$4]
+   0     0    A    4    0    0    1   8  (binary -> hex)
+  useful for A1/     .word 0x00A40018
+
+
+lw $t, i($s)
+1000 11ss ssst tttt iiii iiii iiii iiii
+
+lw $31, 23($11)
+1000 1101 0111 1111 0000 0000 0001 0111
+  
