@@ -1,0 +1,68 @@
+180111
+
+
+---------                 --------------
+|       |                 |     RAM    |
+|  CPU  |      <--->      |------------|
+|       |                 |   Program  |
+|       |                 |------------|
+---------                 |    Data    |
+                          |            |
+                          --------------
+                          
+CPU: [Control unit] decide what to do <---> Registers $0, $1 ... $31
+        ^     ^
+        |     |
+        PC   IR
+
+     ALU: arithmetic and logic unit(hi, lo...)
+     
+PC = program counter
+  · Memory address of next instruction
+IR = instruction register
+  · Holds current instruction
+Fetch-Decode-Execute Loop
+  · PC <- 0
+  · loop
+    · fetch word from RAM whose address is in the PC
+    · place that word in IR
+    · PC <- PC + 4
+    · decode and execute the instruction that is in IR
+
+add $1, $2, $3     ---  This is assembly language, not machine code!
+human meaning : Add together the values in registers $2 and $3 and put the result in register $1
+computer meaning: 0000 0000 0100 0011 0000 1000 0010 0000
+
+jalr: get back to where we were. 跳到某个register 执行完再回到跳到register前的点
+
+Load 42 into $5
+0000 0000 0000 0000 ssss s000 0010 0000
+                    0010 1
+0000 0000 0000 0000 0000 0000 0010 1010
+.word ...   location 0
+.word ...   location 4
+Load 52 into $7
+
+0000 0000 0000 0000 ssss s000 0001 0100
+                    0011 1
+0000 0000 0000 0000 0000 0000 0011 0100
+.word 0x00003814   location 8
+.word 0x00000034   location c
+
+Add $5 and $7, result in $3
+In binary:
+0000 00ss ssst tttt dddd d000 0010 0000
+       00 1010 0111 0001 1
+.word 0x00a71820   location 10
+
+jr $31
+0000 0011 1110 0000 0000 0000 0000 1000
+.word 0x03e00008   location 14
+
+bne ... -5 when tracking backward/forward, the "bne", its own line does not count.
+
+PC = 4 -> 8 -> 12(location, not number)
+IR = lis $5
+$5 = 0x2a
+
+
