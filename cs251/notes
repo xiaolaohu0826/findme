@@ -1,1 +1,62 @@
+Use abstractions to simplify design
+
+We can improve performance via:
+  · Parallelism
+  · Pipelining
+  · Prediction
+  
+Assembly language: low-level
+MIPS: Microprocessor without Interlocked Pipelined Stages
+RISC architecture: Reduced Instruction Set
+  · very basic operations
+  · we look at base MIPS 32-bit
+    More advanced versions of MIPS developed later
+    i.e)64 bit etc.
+
+Registers:
+32 registers
+· Each 32 bits, four bytes
+· $0 ... $31
+· Sometimes $s0...$s7, $t0...$t7
+in MIPS, $0 always contains 0
+
+R-Format: add $1,$2,$3
+• Adds contents of $2 to contents of $3; store result in $1
+• Often written as add rd,rs,rt, where rd is the destination
+Register. Two source registers rs and rt.
+I-Format: addi $1, $2, 100
+• Adds immediate value 100 to contents of $2; store result in $1
+J-Format: j 28
+• Used for branching; discussed later
+
+· Both MIPS program and data are stored in memory
+· Access memory through loading and storing instructions
+· Each program instrcution is one word in length
+· Instruction address is multiple of four
+· Often write a program as memory address followed by instruction(often just need label).  E.g.
+Address        Instruction
+100:           add $1, $2, $3
+104:           sub $1, $3, $5
+
+start:         add $1, $2, $3
+               sub $1, $3, $5
+               
+Control flow: -jump(unconditional goto) -beq(conditional goto)
+jump: when execute jump, the address should be subtracted by 4
+· 100: j 28
+· 104: ...
+· 108: ...
+· 112: ...
+
+bne: if ...
+
+Load word: Reads word from memory, stores in register
+  100: lw $1, 100($2)
+  Read value stored at memory address 100+$2(M[100+$2])
+  store result in $1
+
+Store word: Takes of register and write it to memory
+  100: sw $1, 100($2)
+  Write the value in register $1 to M[100+$2]
+  · This is word address, so 100+$2 must be a multiple of 4
 
