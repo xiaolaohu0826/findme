@@ -34,7 +34,7 @@ Asymptotically tight bound:
   We say that f(n) ∈ θ(g(n))                                                                                      [Theta]
     if f(n)∈O(g(n)) and f(n)∈Ω(g(n))
   
-  Equivalent: there exist c1, c2, n0 s.t. c1*|f(n)| <= c2*|g(n)| for all n >= n0
+  Equivalent: there exist c1, c2, n0 s.t. c1*|g(n)| <= |f(n)| <= c2*|g(n)| for all n >= n0
 
 
 Recall:  2n^2 ∈O(n^100)
