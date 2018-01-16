@@ -227,8 +227,45 @@ End: add $3, $0,
   jr $31
  
   ..讲得太快了
-
-
-
-
+  
+Example 5   ; Output the string "CS241" followed by a newline.
+            ; return.
+            
+  lis $1              ; set $1 to output address
+  .word 0xffff000c 
+  
+  lis $2              ; print C(ASCII 67)
+  .word 67
+  sw $2, 0($1)
+  
+  lis $2              ; print S(ASCII 83)
+  .word 83
+  sw $2, 0($1)
+  
+  lis $2              ; print 2(ASCII 50)
+  .word 50
+  sw $2, 0($1)
+  
+  lis $2              ; print 4(ASCII 52)
+  .word 52
+  sw $2, 0($1)
+  
+  lis $2              ; print 1(ASCII 49)
+  .word 49
+  sw $2, 0($1)
+  
+  lis $2              ; print newline(ASCII 10)
+  .word 10
+  sw $2, 0($1)
+  
+  
+Input example:
+  lis $1
+  .word xffff0004
+  lis $3
+  .word -1
+loop:
+  lw $2, 0($1)
+  beq $2, $0, 
+  
 
