@@ -1,0 +1,53 @@
+Examples 1,2,4
+
+Example1: adding two immediate numbers
+  lis
+  lis
+  add
+  jr31
+
+Example2: finding absolute values
+  slt
+  beq
+  add...
+  add...
+  jr31
+  
+Example3: access certain items of array
+  lis $5 
+  .word 5
+  lis $4
+  .word 4
+  mult ...
+  mflo ...
+  add ...
+  lw ...
+  jr31
+
+Example4: loop to sum integers from 1 to 13
+
+  lis $2
+  .word 13
+  add $3 $0 $0
+  add $3 $3 $2
+  lis $1
+  .word -1
+  add $2 $2 $1
+  bne $2 $0 -5
+  jr31
+  
+  Review:
+  Arrays
+  · Each item next to each otherin memory
+  · mips.array:
+    · $1 = base address
+    · $2 = size of array
+  Conditions
+    · beq/bne: Jump, butonly ifa condition is met
+    · slt?
+  
+  Loop:
+  
+  Loop example:
+  ;$2 <- 13
+  lis 
