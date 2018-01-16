@@ -48,6 +48,187 @@ Example4: loop to sum integers from 1 to 13
   
   Loop:
   
-  Loop example:
-  ;$2 <- 13
-  lis 
+Loop example:
+  //; $2 <- 13            
+  lis $2
+  .word 13
+  
+  //; clear $3
+  add $3, $0, $0
+  
+  //; add current $2
+  add $3, $3, $2
+  
+  //; decrement $2
+  lis $1
+  .word -1
+  
+  //; if $2 != 0, loop
+  bne $2, $0, -5
+  
+  //; return to the OS
+  jr $31
+  
+Label:
+  · Everyinstruction has an address
+  · Specifying address/offset explicitly is confusing!
+  · Label: A name for an address
+  · Assembly language feature, not in machine code.
+  
+Loop example with labels
+  //; $2 <- 13            
+  lis $2
+  .word 13
+  
+  //; clear $3
+  add $3, $0, $0
+  
+  //; add current $2
+  loop:
+  add $3, $3, $2
+  
+  //;decrement $2
+  lis $1
+  .word -1
+  
+  //; if $2 != 0, loop
+  bne $2, $0, loop
+  
+  //; return to the OS
+  jr $31
+
+Storing and Restoring Registers
+  · We only have a fixed numberof registers
+  · What if it's not enough?
+  · Dedicate partof memory to temporary data: the stack
+  · $30: "stack pointer"
+  · Now we can stash out values!
+  
+Stack:
+; store my $1 for later(push)
+sw $1, -4($30)
+lis $2
+.word 4
+sub $30, $30, $2
+
+; modify $1 as I like
+add $1, $0, $0
+...
+
+; get my original $1 back again (pop)
+lis $2
+.word 4
+add $30, $30, $2  
+lw $1, -4($30)
+
+Don't abuse the stack!
+If you push , you pop!
+
+Procedures:
+  · Use labels and the stack to implement procedures:
+    · Give procedure a label,
+    · store previous values of needed registers on stack,
+    · do your work,
+    · restore previous values of registers,
+    · jump back to caller.
+  · Caller? jalr/$31
+  
+Sumthe integers from 1 to n
+input: $1 is n
+output: $3 is the sum
+temp: $2
+
+SumOneToN:
+  sw $1, -4($30)      ; save $2 on the stack
+  sw $2, -8($30)      ; save $2 on the stack
+  lis $2              ; reset the stack pointer
+  .word 8
+  sub $30, $30, $2
+  add $3, $0, $0      ; zero accumulator
+  
+Beginloop:
+  add $3 $3 $1
+  lis $2
+  .word -1
+  add $1, $1, $2
+  bne $1, $0, beginloop
+  
+  lis $1
+  .word 8
+  add $30, $30, $1
+  lw $1, −4($30)
+  lw $2, −8($30)
+  jr $31
+
+
+; Calling a procedure
+  sw $31, -4($30)
+  lis $31
+  .word 4
+  sub $30, $30, $31
+  
+  lis $1      ; call SumOneToN(13)
+  .word 13
+  lis $4      ; address of procedure
+  .word SumOneToN
+  jalr $4     ; pur return address in $31（= PC）, replace PC = $4
+  
+  lis $31     ; restore $31 from stack
+  .word 4
+  add $30, $30, $31
+  lw $31, −4($30)
+  jr $31      ; return to OS
+  
+Recursion and general MIPS pattern
+Recursion Example: 
+
+
+$1: address of beginning 
+
+  sw $2, -4($30)
+  sw $5, -8($30)
+  sw $6, -12($30)
+  sw $7, -16($30)
+  sw $8, -20($30)
+  sw $29, -24($30)
+  sw $31, -28($30)
+  lis $5
+  .word 28
+  sub $30, $30, $5
+  
+  // trivial case : empty subtree
+
+  add $8, $0, $0
+  lis $5,
+  .word -1
+  beq $2, $5, End
+  
+  // Recursive case -- sum node 
+  
+End: add $3, $0, 
+  
+  
+  sw $31, -4($30)     ; store return address
+  sw $29, -8($30)
+  lis $31
+  .word 8
+  sub $30, $30, $31   ; reset stack
+  
+  add $2, $0, $0
+  lis $29
+  .word SumLabels
+  jalr $29
+  
+  lis $31
+  .word 8
+  add $30, $30, $31
+  lw $31, -4($30)
+  lw $29, -8($30)
+  jr $31
+ 
+  ..讲得太快了
+
+
+
+
+
