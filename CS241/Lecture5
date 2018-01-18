@@ -76,4 +76,34 @@ Locations and labels:
     sub $3, $0, $3 -> SUB, DOLLAR, NUMBER(3), COMMA, DOLLAR, NUMBER(0), COMMA, DOLLAR, NUMBER(3)
   Need tokenizer?
   
+  (not a good example in class)
+
+
+Intermediate representation
+  list of tokens -> list of instructions
+  Labels meaningful in assembly, not in machine code
+    · In phase 1: Keep table label -> location
+    · In phase 2: Replace labels in instructions with locations
+    
+  IR:
+  (sw, ...)
+  ...
+  (opcode)(.word, SumOneToN{can be written in 0!}, ...)
+  | 
+  ->(opcode) (.word, 0, ...)  // in other words
+  (beq, SumOneToN)... // relative
+  (jr, $31)
+  
+  Symbol Table:
+  SumOneToN -> 0
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
