@@ -1,1 +1,70 @@
+Performance
+
+· Individual computer
+  · Response time(execution time): time between start and completion
+· Datacenter Manager
+  · Several servers running inquiries submitted by many users
+  · Throughput: Total amount of work done in a given time
+  
+  Register int is about 6 times faster than int
+
+Logic Blocks:
+Combinational: without memory
+Sequential: with memory(storage)
+Inputs and outputs are 1/0 (High/low voltage, true/false)
+
+Computer work with current/voltage
+V=IR
+These quantities are continuous Plot: voltage vs time
+
+• Discrete Signal
+  • Signal is either high (1) or low (0). Binary Values, only two possibilities.
+  • This is how we like our signals to occur in computer systems.
+• Digital signals high(1) or low (0) flow in our computer circuits.
+• Call these digital circuits, with inputs/outputs that can take on only 1 of two
+possible values (0,1) where 1:true and 0:false
+
+Analyze:
+• First: Circuit analysis via Truth Tables
+• Second: We will look at how exactly a binary ‘0’ and ‘1’ are represented
+
+Suppose 3 inputs and 1 output
+• Inputs and Outputs can only have binary values (0,1)
+• Interested in output values for F =1 (true) or F =0 (denoted F )
+• List all possible combination of inputs in a Table
+  • XYZ (X=1 and Y=1 and Z=1)
+  • XYZ (X=0 and Y=0 and Z=0) 
+    ...
+    •Truth table: specifies outputs for each possible input combination
+    X Y Z F G
+    0 0 0 0 1
+    0 0 1 1 1
+    0 1 0 0 1
+    0 1 1 0 1
+    1 0 0 0 1
+    1 0 1 1 1
+    1 1 0 1 1
+    1 1 1 1 0
+  • Complete description, of all combinations of inputs
+  • We want to define output functions for F and G that are produced by
+  this circuit or system
+  • Interested in each value where F =1 (true) and G is true
+  • Focus on F for now.
+  • F is a combination of ‘minterms’ or minimal terms of the inputs 
+  
+Compact alternative: Boolean algebra
+  • Variables (usually A, B,C or X,Y, Z) have values 0 or 1
+  • OR (+) operator has result 1 iff either operand has value 1
+  • AND (· ) operator has result 1 iff both operands have value 1
+  A · B often written AB
+  • NOT (¬) operator has result 1 iff operand has value 0
+  ¬A usually written A
+
+
+
+
+
+
+
+
 
