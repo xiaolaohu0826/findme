@@ -59,10 +59,20 @@ Compact alternative: Boolean algebra
   A · B often written AB
   • NOT (¬) operator has result 1 iff operand has value 0
   ¬A usually written A
+  
+  • F = X Y Z + XY Z + XYZ + XYZ : Sum of Products
+  • G is easier to define as G
+
+Two-Level Representations
+  • Any Boolean function can be represented as a sum of
+  products (OR of ANDs) of literals
+  • Each term in sum corresponds to a single line in truth table
+  with value 1
+  • This can be simplified by hand or by machine
+  • Product of sums representation may also be useful
 
 
-
-
+false, true of X, Y: Rules
 
 
 
