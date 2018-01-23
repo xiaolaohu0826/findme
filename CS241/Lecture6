@@ -3,10 +3,61 @@ sub $3, $0, $3 = 15252315125
 SUB, DOLLAR, NUMBER(3) ...
 
 Need tokenizer
-look for particular elements, finding the end of every words
-List of tokens -> listof instructions
+  Look for particular elements, finding the end of every words
+  List of tokens -> listof instructions
 
 Intermediate representation is internal(Classes? Objects? Lists?) Nobody cares
 
 Symbol table:
-Label: important in assembly language, not machine language
+  Label: important in assembly language, not machine language
+
+Analysis(First pass)
+Synthesis(second pass)
+  0x24 loop:                        0x24 - 0x30 = -0x0c = -12
+  0x24 add $3, $3, $1
+  0x28 sub $1, $1, $2
+  0x2c bne $1, $0, loop // replace with relative location : -3
+  0x30 jre $31
+  ...
+  0x40 lis $8 
+  0x44 .word loop       // replace the "loop" with location 0x24
+  0x48 jr $8
+
+Efficiency matters:
+· Operation needed:
+  · Insert
+  · Lookup
+  · Delete(no)
+NO: Array of (string, integer) pairs
+YES: Your language's built-in map type
+
+Error checking
+  $main:    // syntax
+  addu $3, $3, incrementor    // semantic(addu, incrementor)
+  % I forget, how do I do comments?       // lexical, syntax
+  jr loop  // semantic
+
+  loop: add $3, $3, $7
+  sub $1, $2
+  bn~e $1, $0, loop : loopend              // lexical, syntax(bn~e, :loopend)
+  jr $31
+
+  loop: add $3, $3, $3  // semantic(repeated label)
+  subu $1, $1, $2  // semantic
+  beq $1, $0, $main  // syntax
+
+  // logic! (not your job)
+
+More subtle errors
+
+  lw $3, 32768($30)
+  bne $3, $0, notzero
+  ... [40000 instructions]
+  notzero: ...
+  // restriction of machine code, cannot jump 40000 instructions
+
+Useless error message:
+  ERROR: Something happen. All your base are belong to dead memes
+
+Useful error message:
+  ERROR: Line 2: Unknown instruction "addu"
