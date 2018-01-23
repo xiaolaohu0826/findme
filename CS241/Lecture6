@@ -61,3 +61,45 @@ Useless error message:
 
 Useful error message:
   ERROR: Line 2: Unknown instruction "addu"
+
+A little bit about bits
+  Remember: Everything is context.
+  Useful to treat an instruction as an int
+  But don't output it in decimal ASCII!
+  or output one ASCII symbol "1" or "0" per bit!
+  Make sure you know how to output raw bits.
+
+How to write an assembler?
+  Slowly
+  Keep backups of anything that works. Consider learning Mercurial or (ugh) git
+  One step at a time: Make a printer for your iR
+  Test simple features before complicated one
+  Fear not the xxd, for it may be your rescuer
+  
+formal language theory
+  Unambiguous
+    Communicate
+
+Set theory
+  - Alphabet(symbol set)
+  - Word/token(lexicon)
+  - Sentence
+  Sequence of words
+  - Language
+  set of sentences
+  
+  ø(a|b|c|d|...|z)*
+  // ø,øa,øz,øaa, ..., øzz
+
+  Aleen star: reprat ø or more times
+  // a,b, ..., z, aa, ab, ..., az, ba, ..., bz, ..., (a, ..., zz, aaa)...
+  
+  [a-zA-ZØ-9][a-zA-ZØ-9]*   // [a-zA-ZØ-9]+
+  
+  Language classes:
+  - Finite
+  - Regular
+  - Context-free
+  - Context-sensitive
+
+  Aleen star: reprat ø or more times
