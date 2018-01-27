@@ -1,0 +1,45 @@
+CS241 Lecture 7
+recall: label is replaced by relative/absolute addresses
+
+Alphabet = set of symbols
+word = sequence of symbols
+lexicon = set of words
+sentence = sequence of words
+language = set of sentences [syntax!]
+(a|b|c|...|z)*
+[a-z][a-z]* = [a-z]+
+
+  Language class   |     Comp features    |    Comp Model    |        Common use
+
+  [unit language]  |     Concatenation    |      Example     |
+
+      Finite       |      + Choice        |     FiniteSet    |    Alpabet N.L Lexicon
+
+      Regular      |      + Repetition    | Finite automaton |       P.L Lexicon
+
+   Context-free    |      + Recursion     |Pushdown automaton|    Programming language
+
+ Content-sensitive |      + Context      |linear-bounded auto|  N.L? "Semantic" analysis// rarely discussed in241
+
+
+Arithmetic expression: ([1-9][Ø-9]|Ø)*    (+|-|*|/)([1-9][Ø-9]*|Ø)* 
+parenthesis must match!
+
+PAA = AA|(PAA)
+AA = ([1-9][Ø-9]*|Ø)((+|-|*|/)([1-9][Ø-9]*|Ø))*
+AA = Primary((+|-|*|/)Primary)*
+   = [1-9][Ø-9]*|Ø|(AA)
+
+Finite automation: finite # of statess
+
+        a
+--->___--->___ ...    // see coursenotes: Finite Automation (DFAs and NFAs)
+   start  final
+
+
+NFAs:
+ø-collapse(随便打的符号 意思是无操作) -> set of states through only ø.
+{ø,1,2,3}
+
+
+
