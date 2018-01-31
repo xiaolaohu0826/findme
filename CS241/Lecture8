@@ -1,0 +1,97 @@
+Epsilon: ε
+
+
+[a-zA-Z][a-zA-Z0-9]*
+
+change states and finally go final state, depending on inputs above.
+
+Finite automaton = finite state machine  -->
+  finite # of states -->
+finite # of sets of states
+2^n sets of states max --》
+there exists a FSM(finite-state machine) with states for our sets of states -->
+for every ε - NFA, there exists a DFA.
+
+ε-NFA --> NFA
+  for each state:
+  create ε-collapse of that state
+  for each transition:
+    add transition in out state
+
+NFA to DFA:
+  for each state:
+    if ambiguous output
+      make new state for set of outputs
+  
+when converting to DFA, eliminate ...
+
+
+(aa*b)|(aa*c)
+aa*(b|c)
+图在手机里
+
+delta(state, insym):transition from state on insym or ERROR
+
+recognizer:
+  state = start state
+  while there is input:
+    state = delta(state, getchar())
+  if state is final:
+    true
+  else:
+    false
+    
+    
+grep:
+  while there is input:
+    line := readline()
+    for i in ø... line.length:
+      state:= start state
+      K:= ...
+      while k < line.length:
+        state = delta(state, line[k])
+        if state is final:
+          break;
+      if state is final:
+        print line
+        continue
+
+
+Leftmost amximal munch:
+(add|addmore)
+solution: backtracking or avoid it
+
+tokenizer DFA: for each final state, which token?
+tokenizer:
+  tokens:= []
+  states:=start
+  while there is input:
+    next:= delta(state,getchar())
+    if next is ERROR:
+      if state is final:
+        token.push(state.token)
+      else: die
+    next:=delta(start, readchar())
+    if next is ERROR: die
+  return tokens
+  
+ 
+enum Token{
+    ...
+};
+  
+class State {
+  map<char, State *> transitions;
+  bool finalState;
+  Token token;
+};
+  
+State *startState;
+
+delta(state, c){
+  return state->transitions.get(c);
+}
+
+
+Context-free regular transition
+PDA = FA + stack
